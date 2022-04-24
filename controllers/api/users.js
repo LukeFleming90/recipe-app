@@ -51,6 +51,9 @@ function createJWT(user) {
   );
 }
 
+
+// Version 1
+
 // const User = require('../../models/User')
 
 // const create = async (req,res,next) => {
