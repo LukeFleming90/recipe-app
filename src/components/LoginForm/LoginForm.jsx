@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import styles from './LoginForm.module.css'
 import * as usersService from '../../utilities/users-service';
+
 
 export default function LoginForm({ setUser }) {
 const [credentials, setCredentials] = useState({
@@ -28,18 +30,37 @@ async function handleSubmit(evt) {
 }
 
 return (
-  <div>
-    <div className="form-container">
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-        <label>Password</label>
-        <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-        <button type="submit">LOG IN</button>
+  // <div>
+  //   <div className="form-container">
+  //     <form autoComplete="off" onSubmit={handleSubmit}>
+  //       <label>Email</label>
+  //       <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
+  //       <label>Password</label>
+  //       <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+  //       <button type="submit">LOG IN</button>
+  //     </form>
+  //   </div>
+  //   <p className="error-message">&nbsp;{error}</p>
+  // </div>
+
+  // <p className={styles.sign} align="center">Sign in</p>
+  //   <form class="form1">
+  //     <input class="un " type="text" align="center" placeholder="Username">
+  //     <input class="pass" type="password" align="center" placeholder="Password">
+  //     <a class="submit" align="center">Sign in</a>
+  //     <p class="forgot" align="center"><a href="#">Forgot Password?</p>
+  
+  <div className={styles.LoginForm}>
+      <form autoComplete="off" className={styles.form1} onSubmit={handleSubmit}>
+        <input type="text" className={styles.un} name="email" placeholder="Email" value={credentials.email} onChange={handleChange} required />
+        <input type="password" className={styles.pass} name="password" placeholder="Password" value={credentials.password} onChange={handleChange} required />
+        <button className={styles.submit} type="submit">LOG IN</button>
       </form>
-    </div>
-    <p className="error-message">&nbsp;{error}</p>
   </div>
+    
+
+
+
 );
 }
 
