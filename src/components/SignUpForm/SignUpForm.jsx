@@ -44,7 +44,7 @@ render() {
   return (
       <div className={styles.SignUpForm}>
         <form autoComplete="off" className={styles.form1} onSubmit={this.handleSubmit}>
-          <input type="text" className={styles.un} name="name" value={this.state.name} onChange={this.handleChange} placeholder="Username" required />
+          <input type="text" className={styles.un} name="name" value={this.state.name} onChange={this.handleChange} placeholder="Full Name" required />
           <input type="email" className={styles.un} name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" required />
           <input type="password" className={styles.un} name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" required />
           <input type="password" className={styles.un} name="confirm" value={this.state.confirm} onChange={this.handleChange} placeholder="Confirm Password" required />

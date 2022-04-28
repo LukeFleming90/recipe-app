@@ -1,5 +1,7 @@
-import styles from './UserLogOut.module.css';
 import { logOut } from '../../utilities/users-service';
+import { BiLogOut } from "react-icons/bi";
+import { Button } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
 
 export default function UserLogOut({ user, setUser }) {
 function handleLogOut() {
@@ -8,10 +10,8 @@ function handleLogOut() {
 }
 
 return (
-  <div className={styles.UserLogOut}>
-    <div>{user.name}</div>
-    <div className={styles.email}>{user.email}</div>
-    <button className="btn-sm" onClick={handleLogOut}>LOG OUT</button>
-  </div>
-);
+    <>
+      <Button leftIcon={<Icon as={BiLogOut} />} onClick={handleLogOut} colorScheme='teal' variant='solid'>Log Out</Button>
+    </>
+  );
 }
