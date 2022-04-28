@@ -1,21 +1,24 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Flex, Spacer, Box, ButtonGroup, Heading } from '@chakra-ui/react';
 import UserLogOut from '../../components/UserLogOut/UserLogOut';
-import { Stack } from '@chakra-ui/react';
-import { EmailIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import { Link } from "react-router-dom";
+import { GiKnifeFork } from "react-icons/gi";
+import styles from './Nav.module.css';
 
 export default function Nav({ user, setUser }) {
     return (
-        <div>
-            <Stack direction='row' spacing={4}>
-                <Button leftIcon={<EmailIcon />} colorScheme='teal' variant='solid'>Email</Button>
-                <Button rightIcon={<ArrowForwardIcon />} colorScheme='teal' variant='outline'>Call us</Button>
-                <UserLogOut user={user} setUser={setUser} />
-            </Stack>
-
-            {/* <button><Link to="/"><div>Home</div></Link></button>
-            <button><Link to="/about"><div>About</div></Link></button>
-            <button><Link to="/past-events"><div>Past Events</div></Link></button>
-            <button>Log Out<BiLogOut size={42}/></button> */}
+        <div className={styles.Nav}>
+            <Flex width='98%' alignItems='center' gap='2'>
+                <Box display="flex" align="baseline" p='2'>
+                        <Box mt={1} mr={1}><GiKnifeFork/></Box>
+                        <Heading size='md'><Link to="/">Random Meal App</Link></Heading>
+                </Box>
+                <Spacer />
+                <ButtonGroup gap='2'>
+                    <Button colorScheme='teal' variant='link'>Past Meals</Button>
+                    <Button colorScheme='teal' variant='link'><Link to="/about">About</Link></Button>
+                    <UserLogOut user={user} setUser={setUser} />
+                </ButtonGroup>
+            </Flex>
         </div>
     )
 }

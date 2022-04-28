@@ -11,7 +11,7 @@ function handleLogOut() {
 
 return (
     <>
-      <Button leftIcon={<Icon as={BiLogOut} />} onClick={handleLogOut} colorScheme='teal' variant='solid'>Log Out</Button>
+      <Button onClick={handleLogOut} colorScheme='teal' variant='link'>Log Out</Button>
     </>
   );
 }
