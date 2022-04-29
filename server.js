@@ -4,11 +4,13 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const cors = require('cors');
 
 require('dotenv').config();
 require('./config/database');
 
 const app = express();
+app.use(cors())
 
 app.use(logger('dev'));
 // there's no need to mount express.urlencoded middleware
@@ -29,6 +31,7 @@ app.use('/api/users', require('./routes/api/users'));
 const ensureLoggedIn = require('./config/ensureLoggedIn');
 app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
 app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
+app.use('/api/notes', require('./routes/api/notes'));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
