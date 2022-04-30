@@ -7,6 +7,8 @@ import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import MainPage from '../MainPage/MainPage';
 import AboutPage from '../AboutPage/AboutPage';
+import FileUploadPage from '../FileUploadPage/FileUploadPage';
+import FoodPage from '../FoodPage/FoodPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -19,6 +21,8 @@ export default function App() {
             <Route path="/events/new" element={<NewOrderPage user={user} setUser={setUser} />} />
             <Route path="/events" element={<OrderHistoryPage user={user} setUser={setUser} />} />
             <Route path="/about" element={<AboutPage user={user} setUser={setUser} />} />
+            <Route path="/search" element={<FoodPage user={user} setUser={setUser} />} />
+            <Route path="/file-upload" element={<FileUploadPage user={user} setUser={setUser} />} />
             <Route path="/" element={<MainPage user={user} setUser={setUser} />} />
             {/* redirect to /orders/new if path in address bar hasn't matched a <Route> above */}
             <Route path="/*" element={<Navigate to="/events" />} />
