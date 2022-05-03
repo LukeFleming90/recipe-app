@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.post("/send_mail", cors(), async (req, res) => {
-	let { text, user } = req.body
+	let { name, user, description, item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15 } = req.body
 	const transport = nodemailer.createTransport({
 		host: process.env.MAIL_HOST,
 		port: 587,
@@ -40,7 +40,7 @@ app.post("/send_mail", cors(), async (req, res) => {
 	await transport.sendMail({
 		from: process.env.MAIL_USER,
 		to: `${user}`,
-		subject: "test email",
+		subject: `How To Make: ${name}`,
 		html: `<div className="email" style="
         border: 1px solid black;
         padding: 20px;
@@ -48,10 +48,28 @@ app.post("/send_mail", cors(), async (req, res) => {
         line-height: 2;
         font-size: 20px; 
         ">
-        <h2>Here is your email!</h2>
-        <p>${text}</p>
+        <h2>Instructions</h2>
+        <p>${description}</p>
+		</hr>
+		<ul>
+			<li>${item1}</li>
+			<li>${item2}</li>
+			<li>${item3}</li>
+			<li>${item4}</li>
+			<li>${item5}</li>
+			<li>${item6}</li>
+			<li>${item7}</li>
+			<li>${item8}</li>
+			<li>${item9}</li>
+			<li>${item10}</li>
+			<li>${item11}</li>
+			<li>${item12}</li>
+			<li>${item13}</li>
+			<li>${item14}</li>
+			<li>${item15}</li>
+		</ul>
     
-        <p>All the best, Darwin</p>
+        <p>Enjoy, Random Drink App</p>
          </div>
     `
 	})

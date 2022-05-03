@@ -34,7 +34,40 @@ export default function ProductSimple({ setNewDrink, setIsTrue, isTrue, image, t
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef()
   const setDrink = () => {
-    setNewDrink({name: name})
+    setNewDrink({
+      name: name,
+      instructions: instructions,
+      ingredient1: ingredient1,
+      ingredient2: ingredient2,
+      ingredient3: ingredient3,
+      ingredient4: ingredient4,
+      ingredient5: ingredient5,
+      ingredient6: ingredient6,
+      ingredient7: ingredient7,
+      ingredient8: ingredient8,
+      ingredient9: ingredient9,
+      ingredient10: ingredient10,
+      ingredient11: ingredient11,
+      ingredient12: ingredient12,
+      ingredient13: ingredient13,
+      ingredient14: ingredient14,
+      ingredient15: ingredient15,
+      measurement1: measurement1,
+      measurement2: measurement2,
+      measurement3: measurement3,
+      measurement4: measurement4,
+      measurement5: measurement5,
+      measurement6: measurement6,
+      measurement7: measurement7,
+      measurement8: measurement8,
+      measurement9: measurement9,
+      measurement10: measurement10,
+      measurement11: measurement11,
+      measurement12: measurement12,
+      measurement13: measurement13,
+      measurement14: measurement14,
+      measurement15: measurement15,
+    })
   }
 
   // useEffect(() => {

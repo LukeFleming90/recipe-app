@@ -65,7 +65,23 @@ export default function MainPage({ user, setUser }) {
             setSent(true)
             try {
                 await axios.post("http://localhost:3001/send_mail", {
-                    text: newDrink.name,
+                    name: newDrink.name,
+                    description: newDrink.instructions,
+                    item1: `${newDrink.ingredient1}: ${newDrink.measurement1}`,
+                    item2: `${newDrink.ingredient2}: ${newDrink.measurement2}`,
+                    item3: `${newDrink.ingredient3}: ${newDrink.measurement3}`,
+                    item4: `${newDrink.ingredient4}: ${newDrink.measurement4}`,
+                    item5: `${newDrink.ingredient5}: ${newDrink.measurement5}`,
+                    item6: `${newDrink.ingredient6}: ${newDrink.measurement6}`,
+                    item7: `${newDrink.ingredient7}: ${newDrink.measurement7}`,
+                    item8: `${newDrink.ingredient8}: ${newDrink.measurement8}`,
+                    item9: `${newDrink.ingredient9}: ${newDrink.measurement9}`,
+                    item10: `${newDrink.ingredient10}: ${newDrink.measurement10}`,
+                    item11: `${newDrink.ingredient11}: ${newDrink.measurement11}`,
+                    item12: `${newDrink.ingredient12}: ${newDrink.measurement12}`,
+                    item13: `${newDrink.ingredient13}: ${newDrink.measurement13}`,
+                    item14: `${newDrink.ingredient14}: ${newDrink.measurement14}`,
+                    item15: `${newDrink.ingredient15}: ${newDrink.measurement15}`,
                     user: user.email
                 })
             } catch (error) {
