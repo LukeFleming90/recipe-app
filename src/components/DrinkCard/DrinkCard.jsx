@@ -27,11 +27,21 @@ import {
 import { MdCheckCircle } from "react-icons/md";
 
 import React from 'react';
+import { useState, useEffect } from 'react';
 
-export default function ProductSimple({ image, type, glass, name, category, instructions, ingredient1, measurement1, ingredient2, measurement2, ingredient3, measurement3, ingredient4, measurement4, ingredient5, measurement5, ingredient6, measurement6, ingredient7, measurement7, ingredient8, measurement8, ingredient9, measurement9, ingredient10, measurement10, ingredient11, measurement11, ingredient12, measurement12, ingredient13, measurement13, ingredient14, measurement14, ingredient15, measurement15}) {
-
+export default function ProductSimple({ setNewDrink, setIsTrue, isTrue, image, type, glass, name, category, instructions, ingredient1, measurement1, ingredient2, measurement2, ingredient3, measurement3, ingredient4, measurement4, ingredient5, measurement5, ingredient6, measurement6, ingredient7, measurement7, ingredient8, measurement8, ingredient9, measurement9, ingredient10, measurement10, ingredient11, measurement11, ingredient12, measurement12, ingredient13, measurement13, ingredient14, measurement14, ingredient15, measurement15}) {
+ 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef()
+  const setDrink = () => {
+    setNewDrink({name: name})
+  }
+
+  // useEffect(() => {
+  //   setNewDrink({
+  //     name: name
+  //   })
+  // },[])
 
   return (
     <Center py={12}>
@@ -101,7 +111,7 @@ export default function ProductSimple({ image, type, glass, name, category, inst
           </Wrap>
         </Stack>
         <>
-          <Button mt={4} onClick={onOpen}>
+          <Button mt={4} onClick={() => {onOpen(); setIsTrue(!isTrue); setDrink();}}>
             Drink Details
           </Button>
           <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
