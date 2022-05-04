@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
-import { useNavigate } from 'react-router-dom';
 import {
   Flex,
   Box,
@@ -15,11 +14,9 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from "axios";
+import { GiKnifeFork } from "react-icons/gi";
 
 export default function LoginForm({ setUser }) {
-
-  let navigate = useNavigate();
 
 const [credentials, setCredentials] = useState({
   email: '',
@@ -30,10 +27,6 @@ const [error, setError] = useState('');
 function handleChange(evt) {
   setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
   setError('');
-}
-
-function pageRedirect() {
-  axios.post("http://localhost:3000/testing")
 }
 
 async function handleSubmit(evt) {
@@ -58,17 +51,18 @@ return (
               justify={'center'}
               bg={useColorModeValue('gray.50', 'gray.800')}>
               <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-                <Stack align={'center'}>
-                  <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-                  <Text fontSize={'lg'} color={'gray.600'}>
-                    to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
-                  </Text>
-                </Stack>
+              <Heading fontSize={'4xl'}>Login To Your Account</Heading>
                 <Box
                   rounded={'lg'}
                   bg={useColorModeValue('white', 'gray.700')}
                   boxShadow={'lg'}
                   p={8}>
+                  <Stack align={'center'}>
+                  <Box display="flex" align="baseline" p='2' mb={5}>
+                        <Box mt={1} mr={1}><GiKnifeFork/></Box>
+                        <Heading size='md'><Link to="/">Random Drink &amp; Meal App</Link></Heading>
+                  </Box>
+                </Stack>
                 <Stack spacing={4}>
                 <FormControl id="email">
                   <FormLabel>Email address</FormLabel>
