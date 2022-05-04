@@ -1,5 +1,5 @@
 import Logo from "../Logo/Logo";
-import { ButtonGroup, Container, IconButton, Stack, Text, Link, Box } from '@chakra-ui/react';
+import { ButtonGroup, Container, IconButton, Stack, Text, Link } from '@chakra-ui/react';
 import * as React from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
@@ -40,7 +40,7 @@ export default function Footer() {
         </ButtonGroup>
       </Stack>
       <Text fontSize="sm" color="subtle">
-        &copy; {new Date().getFullYear()} Chakra UI Pro, Inc. All rights reserved.
+        &copy; {new Date().getFullYear()} SEI Madeline Team 3, Inc. All rights reserved.
       </Text>
     </Stack>
   </Container>
