@@ -1,14 +1,12 @@
 import { SimpleGrid, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Button, Stack, Box, FormLabel, Input, Select, Textarea, useDisclosure } from '@chakra-ui/react';
-import { render } from '@testing-library/react';
-import React, { state, useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Nav from '../../components/Nav/Nav';
 import { createNote } from '../../utilities/notes-api';
-import { Component } from "react";
-import ProductDetail from '../../components/ProductDetail/ProductDetail';
 import DrinkCard from '../../components/DrinkCard/DrinkCard';
 import axios from "axios";
+import Footer from '../../components/Footer/Footer';
 
 export default function MainPage({ user, setUser }) {
 
@@ -169,6 +167,7 @@ export default function MainPage({ user, setUser }) {
                     </DrawerContent>
                     </form>
                 </Drawer>
+                <Footer/>
         </main>
     )
 }
