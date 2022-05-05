@@ -17,7 +17,6 @@ export default function Nav({ user, setUser }) {
                     <Button colorScheme='teal' variant='link'>Past Meals</Button>
                     <Button colorScheme='teal' variant='link'><Link to="/search">Recipe Search</Link></Button>
                     <Button colorScheme='teal' variant='link'><Link to="/about">About</Link></Button>
-                    <Button colorScheme='teal' variant='link'><Link to="/file-upload">File Upload</Link></Button>
                     <UserLogOut user={user} setUser={setUser} />
                 </ButtonGroup>
             </Flex>

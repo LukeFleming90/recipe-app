@@ -1,4 +1,4 @@
-import { SimpleGrid, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Button, Stack, Box, FormLabel, Input, Select, Textarea, useDisclosure } from '@chakra-ui/react';
+import { StackDivider, VStack, Text, Flex, SimpleGrid, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Button, Stack, Box, FormLabel, Input, Select, Textarea, useDisclosure } from '@chakra-ui/react';
 import React, { useState, useRef, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,6 +7,8 @@ import { createNote } from '../../utilities/notes-api';
 import DrinkCard from '../../components/DrinkCard/DrinkCard';
 import axios from "axios";
 import Footer from '../../components/Footer/Footer';
+import { FaCocktail } from "react-icons/fa";
+import { HiPencilAlt, HiOutlineMail } from "react-icons/hi";
 
 export default function MainPage({ user, setUser }) {
 
@@ -15,9 +17,9 @@ export default function MainPage({ user, setUser }) {
     const [cocktail, setCocktail] = useState("");
     const [ newDrink, setNewDrink ] = useState({})
     const [ sent, setSent ] = useState(false);
-	const [ emailText, setEmailText ] = useState({});
     const { isOpen, onClose, onOpen } = useDisclosure();
     const description = useRef();
+    const title = useRef();
     const [ isTrue, setIsTrue ] = useState(false)
     const [data, setData] = useState({
         description: "",
@@ -54,6 +56,7 @@ export default function MainPage({ user, setUser }) {
             const response = await fetch(url, options);
             const data = await response.json();
             setCocktail(data);
+            setSent(false);
         } catch(e) {
             console.error(e)
           }
@@ -88,21 +91,29 @@ export default function MainPage({ user, setUser }) {
         }
 
         useEffect(() => {
-            console.log(newDrink)
+            console.log(newDrink.name)
         },[isTrue])
 
       return (
         <main>
             <Nav user={user} setUser={setUser} />
-                {/* <input placeholder="Please Work..." type="text" ref={description}/>
-                <input type="submit" value="create new note"/> */}
-                <Button colorScheme='teal' onClick={onOpen}>
+            <Flex align={'center'} justify={'center'}>
+                <Stack direction='row' spacing={4} mt={7}>
+                <Button colorScheme='teal' onClick={onOpen} leftIcon={<HiPencilAlt />}>
                     Create Note
                 </Button>
-                <Button colorScheme='teal' onClick={getCocktail}>
+                <Button colorScheme='teal' onClick={getCocktail} leftIcon={<FaCocktail />}>
                     Get Cocktail
                 </Button>
-                <Button onClick={handleSend}>Send Email</Button>
+                <Button onClick={handleSend} leftIcon={<HiOutlineMail />}>Send Email</Button>
+                </Stack>
+            </Flex>
+            <Flex align={'center'} justify={'center'}>
+                <VStack mt={8} divider={<StackDivider borderColor='gray.200' />} spacing={4}>
+                    <Text >{`Current Drink Selection is: ${newDrink.name ? newDrink.name : `No Selection Made Yet...`}`}</Text>
+                    <Text >{`${sent ? `${newDrink.name} details emailed to ${user.email}`: `No Drink Details Emailed Yet...`}`}</Text>
+                </VStack>
+            </Flex>
                 <SimpleGrid columns={3} spacing={5}>
                         {
                             cocktail &&
@@ -123,11 +134,21 @@ export default function MainPage({ user, setUser }) {
                     <DrawerContent>
                         <DrawerCloseButton />
                         <DrawerHeader borderBottomWidth='1px'>
-                            Create a new account
+                            Create a Drink Review
                         </DrawerHeader>
 
                         <DrawerBody>
                             <Stack spacing='24px'>
+                                <Box>
+                                    <FormLabel htmlFor='username'>Drink Name</FormLabel>
+                                    <Input
+                                        value={newDrink.name}
+                                        id='title'
+                                        isDisabled={true}
+                                        variant='flushed'
+                                    />
+                                </Box>
+                                
                                 <Box>
                                     <FormLabel htmlFor='username'>Name</FormLabel>
                                     <Input
