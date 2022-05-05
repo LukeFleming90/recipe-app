@@ -1,4 +1,4 @@
-import { Slider, SliderMark, SliderTrack, SliderFilledTrack, Tooltip, SliderThumb, StackDivider, VStack, Text, Flex, SimpleGrid, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Button, Stack, Box, FormLabel, Input, Select, Textarea, useDisclosure } from '@chakra-ui/react';
+import { InputGroup, InputLeftElement, Slider, SliderMark, SliderTrack, SliderFilledTrack, Tooltip, SliderThumb, StackDivider, VStack, Text, Flex, SimpleGrid, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Button, Stack, Box, FormLabel, Input, Textarea, useDisclosure } from '@chakra-ui/react';
 import React, { useState, useRef, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -9,6 +9,9 @@ import axios from "axios";
 import Footer from '../../components/Footer/Footer';
 import { FaCocktail } from "react-icons/fa";
 import { HiPencilAlt, HiOutlineMail } from "react-icons/hi";
+import { BiDrink } from "react-icons/bi";
+import { MdNoDrinks } from "react-icons/md";
+
 
 export default function MainPage({ user, setUser }) {
 
@@ -19,23 +22,34 @@ export default function MainPage({ user, setUser }) {
     const [sent, setSent] = useState(false);
     const { isOpen, onClose, onOpen } = useDisclosure();
     const description = useRef();
-    const title = useRef();
+    const date = useRef();
     const [isTrue, setIsTrue] = useState(false)
     const [sliderValue, setSliderValue] = React.useState(5)
     const [showTooltip, setShowTooltip] = React.useState(false)
     const [data, setData] = useState({
         description: "",
+        value: "",
+        date: "",
     });
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
         try {
             console.log('Before Call')
+            console.log(sliderValue)
             const response = await createNote({
-                description: description.current.value
+                description: description.current.value,
+                rating: sliderValue,
+                drinkName: newDrink.name,
+                instructions: newDrink.instructions,
+                date: startDate,
+                image: newDrink.image,
+                drinkType: newDrink.type,
+                drinkCategory: newDrink.category,
+                drinkGlass: newDrink.glass,
             })
             setData({
-                description: ""
+                description: "",
             })
             console.log('After Call')
         } catch (e) {
@@ -94,7 +108,7 @@ export default function MainPage({ user, setUser }) {
 
     useEffect(() => {
         console.log(newDrink.name)
-    }, [isTrue])
+    }, [newDrink.name,isTrue])
 
     return (
         <main>
@@ -152,27 +166,32 @@ export default function MainPage({ user, setUser }) {
                                 </Box>
 
                                 <Box>
-                                    <FormLabel htmlFor='username'>Name</FormLabel>
-                                    <Input
-                                        ref={description}
-                                        value={data.description}
-                                        id='username'
-                                        placeholder='Please enter user name'
-                                        onChange={(e) => setData(e.target.value)}
-                                    />
-                                </Box>
-
-                                <Box>
-                                    <FormLabel htmlFor='owner'>Select Owner</FormLabel>
-                                    <Select id='owner' defaultValue='segun'>
-                                        <option value='segun'>Segun Adebayo</option>
-                                        <option value='kola'>Kola Tioluwani</option>
-                                    </Select>
+                                    <Textarea isDisabled value={newDrink.instructions} id="instructions"/>
                                 </Box>
 
                                 <Box>
                                     <FormLabel htmlFor='desc'>Description</FormLabel>
-                                    <Textarea id='desc' />
+                                    <Textarea ref={description} value={data.description} id='description' placeholder='Please enter a review' onChange={(e) => setData(e.target.value)} />
+                                </Box>
+
+                                <Box>
+                                    <InputGroup>
+                                        <InputLeftElement
+                                            pointerEvents='none'
+                                            children={newDrink.type === 'Alcoholic' ? <BiDrink color='gray.300' /> : <MdNoDrinks color='gray.300' /> }
+                                        />
+                                        <Input type='text' value={newDrink.type} isDisabled/>
+                                    </InputGroup>
+                                </Box>
+
+                                <Box>
+                                    <FormLabel htmlFor='glass'>Glass</FormLabel>
+                                    <Input id='glass' isDisabled value={newDrink.glass}/>
+                                </Box>
+
+                                <Box>
+                                    <FormLabel htmlFor='category'>Category</FormLabel>
+                                    <Input id='category' isDisabled value={newDrink.category}/>
                                 </Box>
 
                                 <Box>
@@ -189,6 +208,7 @@ export default function MainPage({ user, setUser }) {
                                         onChange={(v) => setSliderValue(v)}
                                         onMouseEnter={() => setShowTooltip(true)}
                                         onMouseLeave={() => setShowTooltip(false)}
+                                        value={sliderValue}
                                     >
                                         <SliderMark value={0} mt='1' ml='-2.5' fontSize='sm'>
                                             0

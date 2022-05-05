@@ -11,6 +11,7 @@ const noteSchema = new Schema({
     drinkType: { type: String },
     drinkCategory: { type: String },
     drinkGlass: { type: String },
+    rating: {type: Number },
     },
     {
         timestamps: true,

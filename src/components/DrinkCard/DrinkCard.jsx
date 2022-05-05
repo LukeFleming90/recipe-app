@@ -66,6 +66,10 @@ export default function ProductSimple({ setNewDrink, setIsTrue, isTrue, image, t
       measurement13: measurement13,
       measurement14: measurement14,
       measurement15: measurement15,
+      image: image,
+      type: type,
+      glass: glass,
+      category: category,
     })
   }
 
