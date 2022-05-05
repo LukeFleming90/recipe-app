@@ -14,7 +14,7 @@ export default function Nav({ user, setUser }) {
                 </Box>
                 <Spacer />
                 <ButtonGroup gap='2'>
-                    <Button colorScheme='teal' variant='link'>Past Meals</Button>
+                    <Button colorScheme='teal' variant='link'><Link to="/past-drinks">Past Drinks</Link></Button>
                     <Button colorScheme='teal' variant='link'><Link to="/search">Recipe Search</Link></Button>
                     <Button colorScheme='teal' variant='link'><Link to="/about">About</Link></Button>
                     <UserLogOut user={user} setUser={setUser} />
