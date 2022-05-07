@@ -81,7 +81,7 @@ export default function MainPage({ user, setUser }) {
     const handleSend = async (e) => {
         setSent(true)
         try {
-            await axios.post("http://localhost:3001/send_mail", {
+            await axios.post("https://recipe-app-lf.herokuapp.com/send_mail", {
                 name: newDrink.name,
                 description: newDrink.instructions,
                 item1: `${newDrink.ingredient1}: ${newDrink.measurement1}`,
